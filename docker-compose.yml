@@ -1,21 +1,21 @@
 version: '3.7'
 
 services:
-  dev-slim:
-    image: "node:18-bullseye"
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/home/node/app
-    command: "tail -f /dev/null"
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: app
-  #   ports:
-  #     - "8008:8008"
-  #   user: nginx
+  # dev-slim:
+  #   image: "node:18-bullseye"
+  #   user: "node"
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=development
+  #   volumes:
+  #     - .:/home/node/app
+  #   command: "tail -f /dev/null"
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    ports:
+      - "8008:8008"
+    user: nginx
 

@@ -1,7 +1,16 @@
 const CracoLessPlugin = require('craco-less')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const path = require('path');
 
 module.exports = {
+  mode: 'development',
+  devServer: {
+    compress: false,
+    hot: true,
+    port: 8304,
+    open: true,
+    liveReload: true,
+  },
   plugins: [
     {
       plugin: CracoLessPlugin,
@@ -9,8 +18,8 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: {
-              '@layout-header-background': '#007ea3',
-              '@primary-color': '#007ea3',
+              '@layout-header-background': '#3072AC',
+              '@primary-color': '#3072AC',
               '@processing-color': '#8cb8c6',
               '@success-color': '#3f9c35',
               '@warning-color': '#eeaf30',

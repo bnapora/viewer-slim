@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
       target: app
     ports:
-      - "8008:8008"
+      - "8001:8008"
     user: nginx
     depends_on:
       - arc
