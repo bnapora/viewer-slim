@@ -15,7 +15,7 @@ declare global {
 
 const config: AppConfig = window.config
 if (config === undefined) {
-  throw Error('No application configuration was provided.')
+  throw Error('No application configuration was provided. Confirm config file is set.')
 }
 
 let App

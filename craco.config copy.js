@@ -1,6 +1,5 @@
 const CracoLessPlugin = require('craco-less')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const VitePlugin = require('vite-plugin-react');
 // const path = require('path');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
   },
   plugins: [
     {
-      plugin: CracoLessPlugin, VitePlugin,
+      plugin: CracoLessPlugin,
       options: {
         lessLoaderOptions: {
           lessOptions: {
