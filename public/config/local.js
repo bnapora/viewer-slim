@@ -1,11 +1,11 @@
 window.config = {
   // This must match the location configured for web server
-  path: '/',
+  path: '/slim-dcm4',
   servers: [
     {
       id: 'local',
       // This must match the proxy location configured for the web server
-      url: 'http://localhost:8008/dcm4chee-arc/aets/DCM4CHEE/rs',
+      url: 'http://localhost/dcm4chee-arc/aets/DCM4CHEE/rs',
       write: true
     }
   ],
@@ -34,7 +34,7 @@ window.config = {
         fill: {
           color: [255, 255, 255, 0.2]
         }
-      }
+      },
     },
     {
       finding: {
