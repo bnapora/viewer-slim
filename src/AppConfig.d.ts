@@ -94,4 +94,5 @@ export default interface AppConfig {
   enableServerSelection?: boolean
   mode?: string
   preload?: boolean
+  token_variant?: 'iap' | null // Use 'iap' if the server is protected by Google Cloud IAP
 }
