@@ -9,7 +9,8 @@ export interface User {
 }
 
 export interface AuthManager {
-  signIn: ({ onSignIn }: { onSignIn: SignInCallback }) => Promise<void>
+  signIn: ({ onSignIn }: { onSignIn: SignInCallback}) => Promise<void>
+  signInIDToken: ({ onSignIn }: { onSignIn: SignInCallback}) => Promise<void>
   signOut: () => Promise<void>
   getAuthorization: () => Promise<string|undefined>
   getUser: () => Promise<User>
