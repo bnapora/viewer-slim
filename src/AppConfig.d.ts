@@ -69,10 +69,12 @@ export interface ServerSettings {
 export interface OidcSettings {
   authority: string
   clientId: string
+  clientSecret?: string
   scope: string
   grantType?: string
   authorizationEndpoint?: string
   endSessionEndpoint?: string
+  automaticSilentRenew?: boolean
 }
 
 export default interface AppConfig {
