@@ -1,4 +1,4 @@
-import { UserManager, User as UserData } from "oidc-client";
+import { UserManager, User as UserData } from "oidc-client-ts";
 
 import { OidcSettings } from "../AppConfig";
 import { isAuthorizationCodeInUrl } from "../utils/url";
@@ -58,11 +58,12 @@ export default class OidcManager implements AuthManager {
       authority: settings.authority,
       client_id: settings.clientId,
       redirect_uri: baseUri,
+      client_secret: settings.clientSecret,
       scope: settings.scope,
       response_type: responseType,
       loadUserInfo: true,
-      automaticSilentRenew: true,
-      revokeAccessTokenOnSignout: true,
+      automaticSilentRenew: settings.automaticSilentRenew,
+      // revokeAccessTokenOnSignout: true,
       post_logout_redirect_uri: `${baseUri}/logout`,
     });
     if (settings.endSessionEndpoint != null) {
@@ -88,7 +89,7 @@ export default class OidcManager implements AuthManager {
               response_type: responseType,
               loadUserInfo: true,
               automaticSilentRenew: true,
-              revokeAccessTokenOnSignout: true,
+              // revokeAccessTokenOnSignout: true,
               post_logout_redirect_uri: `${baseUri}/logout`,
               metadata,
             });
@@ -107,7 +108,7 @@ export default class OidcManager implements AuthManager {
    * Shared sign-in logic to authenticate the user and obtain authorization.
    */
   private async sharedSignIn(
-    getToken: (userData: UserData) => string,
+    getToken: (userData: UserData) => string | undefined,
     onSignIn?: SignInCallback
   ): Promise<void> {
     const handleSignIn = (userData: UserData): void => {
@@ -132,7 +133,11 @@ export default class OidcManager implements AuthManager {
       const userData = await this._oidc.getUser();
       if (userData === null || userData.expired) {
         console.info("authenticating user");
-        await this._oidc.signinRedirect();
+        await this._oidc.signinRedirect({
+          login_hint:
+            new URLSearchParams(window.location.search).get("login_hint") ||
+            undefined,
+        });
       } else {
         console.info("user has already been authenticated");
         handleSignIn(userData);
